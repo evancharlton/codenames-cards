@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import seedrandom from 'seedrandom';
 import GenerateButton from '../components/GenerateButton';
 import Square from './Square';
+import Overlay from './Overlay';
 import { COLORS } from '../colors';
 
 function shuffle<T>(array: T[], rng: () => number): T[] {
@@ -83,11 +84,13 @@ const Game = () => {
           display: 'inline-grid',
           gridTemplateColumns: 'repeat(5, 1fr)',
           border: `16px solid ${COLORS[first]}CC`,
+          position: 'relative',
         }}
       >
         {board.map((kind, id) => {
           return <Square kind={kind} key={id} />;
         })}
+        <Overlay key={seed} />
       </div>
       <input
         disabled
