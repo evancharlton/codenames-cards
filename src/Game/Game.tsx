@@ -69,7 +69,7 @@ const Game = () => {
     return shuffled;
   }, [seed]);
 
-  const first = (board.filter((card) => card === RED).length % 2) as 0 | 1;
+  const first = (board.filter((card) => card === BLUE).length % 2) as 0 | 1;
 
   return (
     <div
