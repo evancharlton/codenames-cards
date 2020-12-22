@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import seedrandom from 'seedrandom';
 import GenerateButton from '../components/GenerateButton';
 import Square from './Square';
+import { COLORS } from '../colors';
 
 function shuffle<T>(array: T[], rng: () => number): T[] {
   var currentIndex = array.length,
@@ -68,6 +69,8 @@ const Game = () => {
     return shuffled;
   }, [seed]);
 
+  const first = (board.filter((card) => card === RED).length % 2) as 0 | 1;
+
   return (
     <div
       style={{
@@ -79,6 +82,7 @@ const Game = () => {
         style={{
           display: 'inline-grid',
           gridTemplateColumns: 'repeat(5, 1fr)',
+          border: `16px solid ${COLORS[first]}CC`,
         }}
       >
         {board.map((kind, id) => {

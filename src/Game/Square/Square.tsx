@@ -1,10 +1,9 @@
 import React from 'react';
+import { COLORS } from '../../colors';
 
 type Props = {
   kind: number;
 };
-
-const COLORS = ['#a81111', '#0a2bad', '#f5eaa4', '#242424'] as const;
 
 const Square = ({ kind }: Props) => {
   return (
