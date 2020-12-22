@@ -16,7 +16,11 @@ function App() {
         height: '100vh',
       }}
     >
-      <Router>
+      <Router
+        basename={
+          window.location.href.includes('localhost') ? '/' : '/codenames-cards/'
+        }
+      >
         <Switch>
           <Route path="/:seed">
             <Game />
