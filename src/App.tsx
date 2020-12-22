@@ -1,6 +1,6 @@
 import React from 'react';
 import Landing from './Landing';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Game from './Game';
 
 function App() {
