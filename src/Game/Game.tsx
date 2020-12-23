@@ -6,6 +6,7 @@ import Square from './Square';
 import Overlay from './Overlay';
 import { COLORS } from '../colors';
 import copy from 'copy-to-clipboard';
+import styles from './Game.module.css';
 
 function shuffle<T>(array: T[], rng: () => number): T[] {
   var currentIndex = array.length,
@@ -83,40 +84,28 @@ const Game = () => {
   const first = (board.filter((card) => card === BLUE).length % 2) as 0 | 1;
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          border: `16px solid ${COLORS[first]}CC`,
-          position: 'relative',
-        }}
-      >
-        {board.map((kind, id) => {
-          return <Square kind={kind} key={id} />;
-        })}
-        <Overlay key={seed} />
+    <div className={styles.pageContainer}>
+      <div className={styles.container}>
+        <div
+          className={styles.grid}
+          style={{ borderColor: `${COLORS[first]}CC` }}
+        >
+          {board.map((kind, id) => {
+            return <Square kind={kind} key={id} />;
+          })}
+          <Overlay key={seed} />
+        </div>
+        <div className={styles.copyContainer}>
+          <button className={styles.copy} onClick={clipboard}>
+            #{seed}
+          </button>
+          <p>
+            {!copied && '⬑ Click to copy (you can also just copy the URL) ⬏'}
+            {copied && 'URL copied to your clipboard! '}
+          </p>
+        </div>
+        <GenerateButton />
       </div>
-      <code
-        style={{
-          textAlign: 'center',
-          fontSize: 16,
-          marginBottom: 4,
-          marginTop: 4,
-          cursor: 'pointer',
-        }}
-        onClick={clipboard}
-      >
-        {window.location.href}
-        <br />
-        {copied ? '(copied!)' : '(click to copy)'}
-      </code>
-      <GenerateButton />
     </div>
   );
 };

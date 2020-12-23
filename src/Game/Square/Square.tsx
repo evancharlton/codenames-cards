@@ -1,5 +1,6 @@
 import React from 'react';
 import { COLORS } from '../../colors';
+import styles from './Square.module.css';
 
 type Props = {
   kind: number;
@@ -8,10 +9,8 @@ type Props = {
 const Square = ({ kind }: Props) => {
   return (
     <div
+      className={styles.square}
       style={{
-        margin: 2,
-        width: 100,
-        height: 100,
         backgroundColor: COLORS[kind],
       }}
     ></div>

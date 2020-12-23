@@ -1,0 +1,55 @@
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  position: relative;
+
+  border-style: solid;
+  border-width: 16px;
+}
+
+.copy {
+  text-align: center;
+  font-size: 16pt;
+  margin-bottom: 4;
+  margin-top: 4;
+  cursor: pointer;
+  width: 100%;
+}
+
+.copyContainer {
+  text-align: center;
+}
+
+.copyContainer p {
+  margin: 4px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    justify-content: space-between;
+    height: 100vh;
+  }
+
+  .copy {
+    font-size: 18pt;
+  }
+
+  .grid {
+    border-left: 0;
+    border-right: 0;
+    width: 100vw;
+  }
+}
