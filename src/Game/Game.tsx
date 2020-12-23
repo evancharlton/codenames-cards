@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import seedrandom from 'seedrandom';
 import GenerateButton from '../components/GenerateButton';
 import Square from './Square';
 import Overlay from './Overlay';
 import { COLORS } from '../colors';
+import copy from 'copy-to-clipboard';
 
 function shuffle<T>(array: T[], rng: () => number): T[] {
   var currentIndex = array.length,
@@ -60,6 +61,7 @@ const BOARD = [
 
 const Game = () => {
   const { seed } = useParams<{ seed: string }>();
+  const [copied, setCopied] = useState(false);
 
   const board = useMemo(() => {
     const rng = seedrandom(seed);
@@ -69,6 +71,15 @@ const Game = () => {
     const shuffled = shuffle(custom, rng);
     return shuffled;
   }, [seed]);
+
+  const clipboard = useCallback(() => {
+    copy(window.location.href);
+    setCopied(true);
+  }, [setCopied]);
+
+  useEffect(() => {
+    setCopied(false);
+  }, [seed, setCopied]);
 
   const first = (board.filter((card) => card === BLUE).length % 2) as 0 | 1;
 
@@ -92,16 +103,20 @@ const Game = () => {
         })}
         <Overlay key={seed} />
       </div>
-      <input
-        disabled
-        value={window.location.href}
+      <code
         style={{
           textAlign: 'center',
           fontSize: 16,
           marginBottom: 4,
           marginTop: 4,
+          cursor: 'pointer',
         }}
-      />
+        onClick={clipboard}
+      >
+        {window.location.href}
+        <br />
+        {copied ? '(copied!)' : '(click to copy)'}
+      </code>
       <GenerateButton />
     </div>
   );
