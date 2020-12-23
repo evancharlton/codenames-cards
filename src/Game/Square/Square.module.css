@@ -9,5 +9,6 @@
     margin: 0;
     width: 20vw;
     height: 20vw;
+    outline: 1px solid #0006;
   }
 }
