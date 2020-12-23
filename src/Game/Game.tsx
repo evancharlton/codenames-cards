@@ -73,8 +73,7 @@ const Game = () => {
   }, [seed]);
 
   const clipboard = useCallback(() => {
-    copy(window.location.href);
-    setCopied(true);
+    setCopied(copy(window.location.href));
   }, [setCopied]);
 
   useEffect(() => {
