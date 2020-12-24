@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 const Overlay = () => {
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('flex');
   const reveal = useCallback(() => {
     setDisplay('none');
   }, [setDisplay]);
